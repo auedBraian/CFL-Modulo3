@@ -1,0 +1,19 @@
+{
+  "name": "ejercicio1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tarea": "node ejercicio1.js",
+    "tarea2": "node ejercicio1_2.js",
+    "tarea3":" node ejercicio1.js & node ejercicio1_2.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "random-words": "^1.1.1",
+    "rectangle-area": "0.0.4",
+    "simple-hello-world-example": "^1.0.6"
+  }
+}
