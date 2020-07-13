@@ -76,9 +76,7 @@ function imprimir(): void {
 
 let palabras: string[] = new Array(5); 
 
-/*
-= ['perro','gato','ave','tigre'];
-*/
+
 
 for (let i: number = 0; i < palabras.length; i++) {
 
@@ -100,5 +98,3 @@ while (opcion != 0) {
 
 }
 
-/*terminar el ejercicio. La idea es hacer un while, que el usuario elija una opcion que sea 1,2,3,4 (insertar, elminar, lo que sea) o que aprete 0 para terminar. Cuando elije la opcion, se ejecuta la funcion correspondiente a la accion que desee realizar el usuario. es complejo pero esta bueno
-*/

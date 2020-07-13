@@ -52,9 +52,6 @@ function imprimir() {
     }
 }
 var palabras = new Array(5);
-/*
-= ['perro','gato','ave','tigre'];
-*/
 for (var i = 0; i < palabras.length; i++) {
     palabras[i] = ReadlineSync.question('Ingrese palabra Aleatoria ');
 }
@@ -64,5 +61,3 @@ while (opcion != 0) {
     ejecutar(opcion);
     opcion = ReadlineSync.questionInt("Ingrese 1 para insertar una palabra, 2 para eliminar, 3 para buscar y 4 para actualizar,5 para imprimir el arreglo y 0 para salir ");
 }
-/*terminar el ejercicio. La idea es hacer un while, que el usuario elija una opcion que sea 1,2,3,4 (insertar, elminar, lo que sea) o que aprete 0 para terminar. Cuando elije la opcion, se ejecuta la funcion correspondiente a la accion que desee realizar el usuario. es complejo pero esta bueno
-*/
