@@ -1,0 +1,18 @@
+{
+  "name": "ejercicio3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ejercicio3": "node ejercicio3.js",
+    "ejercicio3_1":"node ejercicio3_1.js",
+    "ejercicio3_2":"node ejercicio3_2.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^14.0.22",
+    "readline-sync": "^1.4.10"
+  }
+}
