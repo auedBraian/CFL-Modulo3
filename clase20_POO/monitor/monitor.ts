@@ -7,14 +7,14 @@ class monitor{
     private brand: string;
     private model: string;
     private resolution:number;
-    private zise:number;
+    private size:number;
     private Qcolors: number;
 
     constructor(marca:string,modelo:string, tamaño:number,CantColores:number){
         this.itsOn=false;
         this.brand=marca;
         this.model=modelo;
-        this.zise=tamaño;
+        this.size=tamaño;
         this.Qcolors=CantColores;
     }
 

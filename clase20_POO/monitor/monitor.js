@@ -4,7 +4,7 @@ var monitor = /** @class */ (function () {
         this.itsOn = false;
         this.brand = marca;
         this.model = modelo;
-        this.zise = tamaño;
+        this.size = tamaño;
         this.Qcolors = CantColores;
     }
     monitor.prototype.TurnOnTurnOff = function () {
