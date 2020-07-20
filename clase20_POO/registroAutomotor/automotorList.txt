@@ -1,0 +1,1 @@
+fiat,uno,1998,rojo;ford,focus,2000,verde;ford,fiesta,2013,azul;vw,gol,2015,amarillo;fiat,argo,2020,blanco;renault,kangoo,2011,negro;vw,voyage,2009,naranja;toyota,corolla,2017,celeste
