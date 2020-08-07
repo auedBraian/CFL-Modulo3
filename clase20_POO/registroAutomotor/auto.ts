@@ -1,6 +1,7 @@
 
 import * as fs from 'fs';
 
+
 var readlineSync = require('readline-sync');
 
 class Auto {
@@ -9,12 +10,14 @@ class Auto {
     private model: string;
     private year: number;
     private color: string;
+    private carRegistration:string;
 
-    public constructor(brand: string, model: string, year: number, color: string) {
+    public constructor(brand: string, model: string, year: number, color: string, patente:string) {
         this.brand = brand;
         this.model = model;
         this.year = year;
         this.color = color;
+        this.carRegistration=patente;
 
     }
 
@@ -51,6 +54,25 @@ class Auto {
         this.color = color;
     }
 
+    public getCarRegistration(): string {
+        return this.carRegistration;
+    }
+
+    public setCarRegistration(registration: string): void {
+        this.carRegistration = registration;
+    }
+
+
+    public compare(auto1: Auto, auto2: Auto): boolean {
+
+    if (auto1.getBrand() == auto2.getBrand() && auto1.getModel() == auto2.getModel() && auto1.getYear() == auto2.getYear() && auto1.getColor() == auto2.getColor() && auto1.getCarRegistration() == auto2.getCarRegistration()) {
+
+            return true;
+
+        }
+
+    }
+
 }
 
 
@@ -74,17 +96,14 @@ class AutomotorRegistry {
     searchAuto(auto: Auto): number {
 
         let position: number = -1;
-        let i: number = 0
-
-        
+      
         for (let i: number = 0; i < this.autos.length; i++) {
-            if (this.autos[i].getBrand()==auto.getBrand() && this.autos[i].getModel()==auto.getModel() && this.autos[i].getYear()==auto.getYear() && this.autos[i].getColor()==auto.getColor()){ 
-                
-                position = i;
-               
+
+            let a: boolean = auto.compare(this.autos[i], auto);
+            if (a == true) {
+            position = i;
             }
         }
-        
 
         if (position == -1) {
 
@@ -96,6 +115,28 @@ class AutomotorRegistry {
         return position;
     }
 
+    
+        searchAutobyCarRegistration(carReg: string): number {
+
+        let position: number = -1;
+      
+        for (let i: number = 0; i < this.autos.length; i++) {
+
+            if(this.autos[i].getCarRegistration() === carReg){     
+            position = i;
+            }
+        }
+
+        if (position == -1) {
+
+            console.log("the car is not registered ");
+        }
+        else {
+            console.log("the car is registered in position " + position);
+        }
+        return position;
+    }
+    
 
     deleteAuto(auto: Auto): void {
 
@@ -107,7 +148,8 @@ class AutomotorRegistry {
 
         }
         else {
-            delete this.autos[position];
+            
+            this.autos.splice(position,1);
         }
 
     }
@@ -133,7 +175,7 @@ function completeRegistry(arrayCars: string[]): Auto[] {
     for (let i: number = 0; i < arrayCars.length; i++) {
         let arrayAuto: string[];
         arrayAuto = arrayCars[i].split(',');
-        let auto1: Auto = new Auto(arrayAuto[0], arrayAuto[1], Number(arrayAuto[2]), arrayAuto[3]);
+        let auto1: Auto = new Auto(arrayAuto[0], arrayAuto[1], Number(arrayAuto[2]), arrayAuto[3],arrayAuto[4]);
         registry.push(auto1);
     }
     return registry;
@@ -145,7 +187,8 @@ function completeCar(): Auto {
     let model: string = readlineSync.question("insert model ");
     let year: number = readlineSync.questionInt("insert year ");
     let color: string = readlineSync.question("insert color ");
-    let car1: Auto = new Auto(brand, model, year, color);
+    let registration: string = readlineSync.question("insert car registration ");
+    let car1: Auto = new Auto(brand, model, year, color, registration);
     return car1;
 }
 
@@ -161,29 +204,35 @@ let option: number = 0;
 
 console.log(registry);
 
-option = readlineSync.questionInt("Wich option do you want to use? press 1 for search, 2 for insert, 3 for delete, 4 for print all the registy, 0 for exit ");
+option = readlineSync.questionInt("Wich option do you want to use? press 1 for search by features,2 for search by car registration, 3 for insert, 4 for delete, 5 for print all the registy, 0 for exit ");
 
 while (option != 0) {
 
-    if (option == 1) {
-        let auto1=completeCar();
+    let auto1: Auto;
+    if (option == 1){
+        auto1 = completeCar();
         registry.searchAuto(auto1);
     }
-    else if (option == 2) {
-        let auto1=completeCar();
-        registry.insertAuto(auto1);
+    else if(option==2){
+        let carReg:string=readlineSync.question("insert car registration ");
+        carReg.toUpperCase;
+        registry.searchAutobyCarRegistration(carReg);
     }
     else if (option == 3) {
-        let auto1=completeCar();
-        registry.deleteAuto(auto1);
+        auto1 = completeCar();
+        registry.insertAuto(auto1);
     }
     else if (option == 4) {
+        auto1 = completeCar();
+        registry.deleteAuto(auto1);
+    }
+    else if (option == 5) {
 
         console.log(registry);
-        }
-
-    option = readlineSync.questionInt("Wich option do you want to use? press 1 for search, 2 for insert, 3 for delete, 4 for print all the registy, 0 for exit ");
     }
+
+    option = readlineSync.questionInt("Wich option do you want to use? press 1 for search by features,2 for search by car registration, 3 for insert, 4 for delete, 5 for print all the registy, 0 for exit ");
+}
 
 
 
