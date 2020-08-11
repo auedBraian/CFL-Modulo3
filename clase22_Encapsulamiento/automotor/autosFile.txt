@@ -1,0 +1,1 @@
+Ford,1998,nafta,8,18;Chevrolet,2000,gasoil,10,15;Mustang,1998,electrico,23,12;Fiat,2012,gas,6,14;Mercedez Benz, 2018,nafta, 12,16;Audi,2020,gasoil,8,12
