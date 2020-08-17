@@ -1,6 +1,7 @@
 
 var readlineSync = require('readline-sync');
 
+//Clase Telefono --> clase padre, contiene atributos y metodos propios de su clase
 class Telefono {
 
     protected estaPrendido: boolean;
@@ -61,7 +62,7 @@ class Telefono {
 }
 
 
-
+//clase TelefonoConCamara, hereda los atributos y metodos de la clase Telefono, y se agregan metodos propios de esta clase
 class TelefonoConCamara extends Telefono {
 
     constructor() {
@@ -83,6 +84,8 @@ class TelefonoConCamara extends Telefono {
 
 }
 
+//clase TelefonoConRadio, hereda los atributos y metodos de la clase Telefono, y se agregan metodos propios de esta clase
+
 class TelefonoConRadio extends Telefono {
 
     protected frecuenciaActual: number;
@@ -103,7 +106,7 @@ class TelefonoConRadio extends Telefono {
 
 }
 
-
+//recibe un obejto del tipo Telefono, una opcion, y en base a la opcion recibida ejecuta una tarea
 function runTask(telephone: Telefono, option: number): void {
 
     switch (option) {
@@ -130,7 +133,7 @@ if (startApp == 1) {
 
     while (option > 0 && option <= 4) {
 
-        runTask(newTelephone, option);
+        runTask(newTelephone, option);// envia el objeto de tipo Telefono y la opcion a la funcion runTask, y esta funcion va a ejecutar una tarea
 
         option = readlineSync.questionInt("Press 1 to send a message, to 2 make a phone call, 3 to check battery, 4 to turnON/OFF the phone, another value to exit ");
     }
@@ -144,11 +147,11 @@ if (startApp == 1) {
     while (option > 0 && option <= 5) {
 
         if ((option == 1) || (option == 2) || (option == 3) || (option == 4)) {
-            runTask(newTelephone, option);
+            runTask(newTelephone, option);// envia el objeto de tipo TelefonoConCamara y la opcion a la funcion runTask, y esta funcion va a ejecutar una tarea
         }
         else if (option == 5) {
             let click: boolean = readlineSync.keyInYN("Do yo want to take a photo? ");
-            let imagen:string= newTelephone.sacarFoto(click);
+            let imagen:string= newTelephone.sacarFoto(click); //depende el valor enviado, saca la foto o no la saca
             console.log("your image´s name is "+imagen);
 
         }
@@ -166,17 +169,17 @@ if (startApp == 1) {
 
         if ((option == 1) || (option == 2) || (option == 3) || (option == 4)) {
 
-            runTask(newTelephone, option);
+            runTask(newTelephone, option); // envia el objeto de tipo TelefonoConCamara y la opcion a la funcion runTask, y esta funcion va a ejecutar una tarea
 
         } else if (option == 5) {
 
-            let actualFrecuency: number = newTelephone.verFrecuenciaActual();
+            let actualFrecuency: number = newTelephone.verFrecuenciaActual(); //devuelve la frecuencia de la radio que esta escuchando
             console.log("actual frecuency is " + actualFrecuency);
         
         } else if (option == 6) {
 
-            let newFrecuency: number = readlineSync.questionInt("Insert new frecuency ");
-            newTelephone.cambiarFrecuenciaRadial(newFrecuency);
+            let newFrecuency: number = readlineSync.questionInt("Insert new frecuency "); 
+            newTelephone.cambiarFrecuenciaRadial(newFrecuency); //cambia la frecuencia de la radio
         }
 
         option = readlineSync.questionInt("Press 1 to send a message, to 2 make a phone call, 3 to check battery, 4 to turnFF the phone, 5 to check radio frecuency, 6 to set radio frecuency, another value to exit ");

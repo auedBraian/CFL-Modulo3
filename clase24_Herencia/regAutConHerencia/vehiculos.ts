@@ -32,7 +32,7 @@ class Vehicles {
         return this.brand;
     }
 
-
+    //recibe dos elementos del tipo vehicle y comprara si sus patentes son iguales. En caso de serlo devuelve true.
     public compare(vehicle1: Vehicles, vehicle2: Vehicles): boolean {
 
 

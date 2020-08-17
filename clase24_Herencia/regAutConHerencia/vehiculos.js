@@ -30,6 +30,7 @@ var Vehicles = /** @class */ (function () {
     Vehicles.prototype.getMarca = function () {
         return this.brand;
     };
+    //recibe dos elementos del tipo vehicle y comprara si sus patentes son iguales. En caso de serlo devuelve true.
     Vehicles.prototype.compare = function (vehicle1, vehicle2) {
         if (vehicle1.getPatente() === vehicle2.getPatente()) {
             return true;
