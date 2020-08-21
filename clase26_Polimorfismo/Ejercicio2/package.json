@@ -1,0 +1,11 @@
+{
+  "name": "robotdelimpieza",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "robot": "tsc index.ts & node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
