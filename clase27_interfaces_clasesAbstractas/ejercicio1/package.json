@@ -1,0 +1,11 @@
+{
+  "name": "telefonoconinterface",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "telefono": "tsc index.ts & node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
