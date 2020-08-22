@@ -1,0 +1,16 @@
+{
+  "name": "regautconherencia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "registro":"tsc vehiculos.ts && node vehiculos.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^14.0.27",
+    "readline-sync": "^1.4.10"
+  }
+}
