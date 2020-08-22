@@ -24,7 +24,7 @@ export class AutomotorRegistry {
         for (let i: number = 0; i < this.autos.length; i++) {
 
             let a: boolean = auto.compare(this.autos[i], auto);
-            if (a == true) {
+            if (a) {
             position = i;
             }
         }

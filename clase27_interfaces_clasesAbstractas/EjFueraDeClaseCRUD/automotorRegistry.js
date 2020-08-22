@@ -17,7 +17,7 @@ var AutomotorRegistry = /** @class */ (function () {
         var position = -1;
         for (var i = 0; i < this.autos.length; i++) {
             var a = auto.compare(this.autos[i], auto);
-            if (a == true) {
+            if (a) {
                 position = i;
             }
         }

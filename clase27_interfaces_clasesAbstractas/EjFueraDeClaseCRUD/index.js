@@ -26,40 +26,33 @@ function completeCar() {
     var car1 = new auto_1.Auto(brand, model, year, color, registration);
     return car1;
 }
-//recibe el auto creado
-function updateRegistry(automotor) {
-    //creo un arreglo de strings donde almaceno los valores del auto creado
-    var stringAuto = [];
-    stringAuto.push(';' + automotor.getBrand());
-    stringAuto.push(',' + automotor.getModel());
-    stringAuto.push(',' + automotor.getYear().toString());
-    stringAuto.push(',' + automotor.getColor());
-    stringAuto.push(',' + automotor.getCarRegistration());
-    for (var i = 0; i < stringAuto.length; i++) {
-        //agrego los valores del string anterior uno a uno en txt
-        fs.appendFile('automotorList.txt', stringAuto[i], function (err) {
-            if (err)
-                throw err;
-        });
-    }
-}
 //recibo todo el registro automotor
 function updateTXTFile(registroAutomotor) {
     var txtFile = '';
-    //elimino elementos null y vacios del registro
-    registroAutomotor.getAutos().filter(function (e) { return e; });
     for (var i = 0; i < registroAutomotor.getAutosLength(); i++) {
         //obtengo uno a uno los objetos Auto del registro
         var auto = registroAutomotor.getAutos()[i];
-        //los valores de cada auto los voy almacenando en esta variable de tipo string
-        txtFile = txtFile + auto.getBrand() + ',' + auto.getModel() + ',' + auto.getYear().toString() + ',' + auto.getColor() + ',' + auto.getCarRegistration() + ';';
+        if (auto.getBrand() == '') {
+        }
+        else {
+            //los valores de cada auto los voy almacenando en esta variable de tipo string
+            txtFile = txtFile + auto.getBrand() + ',' + auto.getModel() + ',' + auto.getYear().toString() + ',' + auto.getColor() + ',' + auto.getCarRegistration() + ';';
+        }
     }
     //actualizo el txt
     fs.writeFile('automotorList.txt', txtFile, function (err) {
         if (err)
             throw err;
-        console.log('Saved!');
     });
+}
+function printRegistry(registry) {
+    for (var i = 0; i < registry.getAutosLength(); i++) {
+        if (registry.getAutos()[i].getBrand() == '') { //este if evita imprimir el ultimo elemento que seria vacio
+        }
+        else {
+            console.log(registry.getAutos()[i]); // imprimo el registro completo
+        }
+    }
 }
 var car = 'automotorList.txt';
 var txtFile = new fileManager_1.FileManager(car);
@@ -68,7 +61,7 @@ cars = txtFile.getStringArray();
 //creo el registro automotor, y la funcion completeRegisty va a generar el arreglo de elementos de tipo Auto para llenar ese registro
 var registry = new automotorRegistry_1.AutomotorRegistry(completeRegistry(cars));
 var option = 0;
-console.log(registry);
+printRegistry(registry); //imprimo registro cuando inicia programa
 option = readlineSync.questionInt("Wich option do you want to use? press 1 for search by features,2 for search by car registration, 3 for insert, 4 for delete, 5 for print all the registy, 0 for exit ");
 while (option != 0) {
     var auto1 = void 0;
@@ -84,14 +77,16 @@ while (option != 0) {
     else if (option == 3) {
         auto1 = completeCar();
         registry.insertAuto(auto1); //inserto un elemento Auto en el registro
-        updateRegistry(auto1);
+        updateTXTFile(registry);
     }
     else if (option == 4) {
         auto1 = completeCar();
         registry.deleteAuto(auto1); //busco un elemento del registro y lo elimino
+        updateTXTFile(registry);
     }
     else if (option == 5) {
-        console.log(registry); // imprimo el registro completo
+        printRegistry(registry); //imprimo el registro
+        updateTXTFile(registry); //actualizo el txt
     }
     option = readlineSync.questionInt("Wich option do you want to use? press 1 for search by features,2 for search by car registration, 3 for insert, 4 for delete, 5 for print all the registy, 0 for exit ");
 }

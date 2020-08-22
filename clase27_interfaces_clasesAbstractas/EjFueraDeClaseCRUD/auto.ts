@@ -1,5 +1,5 @@
 import { Vehiculo } from "./vehiculo";
-import {AccionesAuto} from './interfaceAuto'
+import {AccionesAuto} from './accionesAuto'
 
 export  class Auto extends Vehiculo implements AccionesAuto {
 
