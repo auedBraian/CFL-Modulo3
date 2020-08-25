@@ -1,4 +1,4 @@
-import {Alumno} from './alumno'
+import { Alumno } from './alumno'
 
 //Clase RegistroAlumnos con sus variables y metodos
 export class RegistroAlumnos {
@@ -16,17 +16,24 @@ export class RegistroAlumnos {
         }
     }
 
-    //funcion que recibe un elemento de tipo Alumno y busca en el registro si el elemento esta. Si esta devuelve la posicion del mismo. Para buscarlo utiliza la funcion compare de la clase Auto
-    public searchAlumno(alumno: Alumno): number {
+    //funcion que recibe el DNI del alumno buscado y busca en el registro un elemento con ese mismo DNI. Si el elemento esta, devuelve la posicion del mismo. 
+
+    public searchAlumno(dni: number): number {
 
         let position: number = -1;
-      
-        for (let i: number = 0; i < this.alumnos.length; i++) {
+        let a: boolean = false;
+        let i: number = 0;
+        while (i < this.alumnos.length && a == false) {
 
-            let a: boolean = alumno.compare(this.alumnos[i], alumno);
-            if (a) {
-            position = i;
+            if (this.getAlumnos()[i].getDNI() == dni) {
+
+                a = true;
             }
+
+            if (a) {
+                position = i;
+            }
+            i++
         }
 
         if (position == -1) {
@@ -40,21 +47,21 @@ export class RegistroAlumnos {
     }
 
 
-    
-    
+
+
     //funcion que recibe un elemento de tipo Alumno, lo busca en el registro y si esta lo elimina
-    public deleteAlumno(alumno: Alumno): void {
+    public deleteAlumno(DNI: number): void {
 
         let position: number = -1;
 
-        position = this.searchAlumno(alumno);
+        position = this.searchAlumno(DNI);
 
         if (position == -1) {
 
         }
         else {
-            
-            this.alumnos.splice(position,1);
+
+            this.alumnos.splice(position, 1);
         }
 
     }
@@ -63,6 +70,7 @@ export class RegistroAlumnos {
     public insertAlumno(alumno: Alumno): void {
 
         this.alumnos.push(alumno);
+        console.log("Alumno registrado con exito");
     }
 
     //devuelve la cantidad de alumnos que hay en el registro

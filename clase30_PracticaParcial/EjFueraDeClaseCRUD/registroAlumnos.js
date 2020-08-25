@@ -12,14 +12,19 @@ var RegistroAlumnos = /** @class */ (function () {
             this.alumnos = alumnos;
         }
     }
-    //funcion que recibe un elemento de tipo Alumno y busca en el registro si el elemento esta. Si esta devuelve la posicion del mismo. Para buscarlo utiliza la funcion compare de la clase Auto
-    RegistroAlumnos.prototype.searchAlumno = function (alumno) {
+    //funcion que recibe el DNI del alumno buscado y busca en el registro un elemento con ese mismo DNI. Si el elemento esta, devuelve la posicion del mismo. 
+    RegistroAlumnos.prototype.searchAlumno = function (dni) {
         var position = -1;
-        for (var i = 0; i < this.alumnos.length; i++) {
-            var a = alumno.compare(this.alumnos[i], alumno);
+        var a = false;
+        var i = 0;
+        while (i < this.alumnos.length && a == false) {
+            if (this.getAlumnos()[i].getDNI() == dni) {
+                a = true;
+            }
             if (a) {
                 position = i;
             }
+            i++;
         }
         if (position == -1) {
             console.log("el alumno no esta registrado ");
@@ -30,9 +35,9 @@ var RegistroAlumnos = /** @class */ (function () {
         return position;
     };
     //funcion que recibe un elemento de tipo Alumno, lo busca en el registro y si esta lo elimina
-    RegistroAlumnos.prototype.deleteAlumno = function (alumno) {
+    RegistroAlumnos.prototype.deleteAlumno = function (DNI) {
         var position = -1;
-        position = this.searchAlumno(alumno);
+        position = this.searchAlumno(DNI);
         if (position == -1) {
         }
         else {
@@ -42,6 +47,7 @@ var RegistroAlumnos = /** @class */ (function () {
     //funcion que recibe un elemento de tipo Auto y lo inserta en el registro
     RegistroAlumnos.prototype.insertAlumno = function (alumno) {
         this.alumnos.push(alumno);
+        console.log("Alumno registrado con exito");
     };
     //devuelve la cantidad de alumnos que hay en el registro
     RegistroAlumnos.prototype.getAlumnosLength = function () {

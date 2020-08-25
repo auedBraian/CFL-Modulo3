@@ -24,7 +24,7 @@ function completarAlumno() {
     var alumno1 = new alumno_1.Alumno(nombre, apellido, DNI);
     return alumno1;
 }
-//recibo todo el registro automotor
+//recibo todo el registro de alumnos
 function updateTXTFile(registroAlumnos) {
     var txtFile = '';
     for (var i = 0; i < registroAlumnos.getAlumnosLength(); i++) {
@@ -59,48 +59,45 @@ alumnos = txtFile.getStringArray();
 //creo el registro de alumnos, y la funcion completeRegisty va a generar el arreglo de elementos de tipo Alumnos para llenar ese registro
 var registroAlumnos = new registroAlumnos_1.RegistroAlumnos(completarRegistro(alumnos));
 var opcion = 0;
-imprimirRegistro(registroAlumnos); //imprimo registro cuando inicia programa
-opcion = readlineSync.questionInt("Que accion desea realizar? presione 1 para buscar un alumno,2 para insertar un alumno en el registro,3 para borrar un alumno del registro,4 para consultar su promedio, 5 para consultar una nota, 6 para insertar una nota,7 para imprimir el registro, 0 para salir");
+opcion = readlineSync.questionInt("Que accion desea realizar? presione 1 para buscar un alumno,2 para insertar un alumno en el registro,3 para borrar un alumno del registro,4 para consultar su promedio, 5 para consultar una nota, 6 para insertar una nota,7 para imprimir el registro, 0 para salir ");
 while (opcion != 0) {
-    var alumno1 = void 0;
+    //let alumno1: Alumno;
     if (opcion == 1) {
-        alumno1 = completarAlumno(); //creo un nuevo alumno
-        registroAlumnos.searchAlumno(alumno1); //envio el alumno creado al registro para ver si coincide con alguno de los elementos del registro
+        var DNI = readlineSync.question("Ingrese DNI del alumno buscado ");
+        registroAlumnos.searchAlumno(DNI); //envio el DNI del alumno buscado al registro para ver si coincide con el atributo DNI de alguno de los elementos del registro
     }
     else if (opcion == 2) {
-        alumno1 = completarAlumno(); //creo un alumno nuevo
+        var alumno1 = completarAlumno(); //creo un alumno nuevo
         //chequeo que el alumno no este registrado
-        var check = registroAlumnos.searchAlumno(alumno1);
+        var check = registroAlumnos.searchAlumno(alumno1.getDNI());
         if (check == -1) {
             registroAlumnos.insertAlumno(alumno1);
         }
         updateTXTFile(registroAlumnos); //actualizo el txt
     }
     else if (opcion == 3) {
-        alumno1 = completarAlumno(); //creo un alumno nuevo;
-        registroAlumnos.deleteAlumno(alumno1); //busco un elemento del registro y lo elimino
+        var DNI = readlineSync.question("Ingrese DNI del alumno que desea borrar ");
+        registroAlumnos.deleteAlumno(DNI); //busco un elemento del registro y lo elimino
         updateTXTFile(registroAlumnos); //actualizo el txt
     }
     else if (opcion == 4) {
         var posicion = readlineSync.questionInt("inserte en que posicion se encuentra el alumno del cual desea saber su promedio ");
         if (posicion < registroAlumnos.getAlumnosLength()) {
-            var promedio = registroAlumnos.getAlumnos()[posicion].getPromedio();
-            console.log("su promedio es " + promedio);
+            registroAlumnos.getAlumnos()[posicion].getPromedio();
         }
     }
     else if (opcion == 5) {
-        var posicion = readlineSync.questionInt("inserte en que posicion se encuentra el alumno del cual desea saber una de sus notas");
-        var posicionNota = readlineSync.questionInt("Inserte posicion de la nota en el arreglo");
+        var posicion = readlineSync.questionInt("inserte en que posicion se encuentra el alumno del cual desea saber una de sus notas ");
+        var posicionNota = readlineSync.questionInt("Inserte posicion de la nota en el arreglo de notas ");
         console.log("notas del alumno seleccionado " + registroAlumnos.getAlumnos()[posicion].getNota(posicionNota));
     }
     else if (opcion == 6) {
-        var posicion = readlineSync.questionInt("inserte en que posicion se encuentra el alumno del cual desea insertarle una nota");
-        var notaNueva = readlineSync.questionInt("Inserte la nota");
+        var posicion = readlineSync.questionInt("inserte en que posicion se encuentra el alumno del cual desea insertarle una nota ");
+        var notaNueva = readlineSync.questionInt("Inserte la nota ");
         registroAlumnos.getAlumnos()[posicion].setNota[notaNueva];
     }
     else if (opcion == 7) {
         imprimirRegistro(registroAlumnos); //imprimo el registro
-        updateTXTFile(registroAlumnos); //actualizo el txt
     }
-    opcion = readlineSync.questionInt("Que accion desea realizar? presione 1 para buscar un alumno,2 para insertar un alumno en el registro,3 para borrar un alumno del registro,4 para consultar su promedio, 5 para consultar una nota, 6 para insertar una nota,7 para imprimir el registro, 0 para salir");
+    opcion = readlineSync.questionInt("Que accion desea realizar? presione 1 para buscar un alumno,2 para insertar un alumno en el registro,3 para borrar un alumno del registro,4 para consultar su promedio, 5 para consultar una nota, 6 para insertar una nota,7 para imprimir el registro, 0 para salir ");
 }

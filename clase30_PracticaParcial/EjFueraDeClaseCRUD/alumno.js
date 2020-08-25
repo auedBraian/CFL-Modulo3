@@ -21,17 +21,23 @@ var Alumno = /** @class */ (function (_super) {
         var _this = _super.call(this, nombre, apellido) || this;
         _this.notas = [];
         _this.DNI = dni;
-        _this.notas = [0, 0, 0];
+        _this.notas = [1, 1, 1];
         return _this;
     }
     Alumno.prototype.getPromedio = function () {
+        var suma = 0;
+        var promedio = 0;
         for (var i = 0; i < this.notas.length; i++) {
-            this.promedio = this.promedio + this.notas[i];
+            suma = suma + this.notas[i];
         }
-        return (this.promedio / this.notas.length);
+        promedio = (suma / this.notas.length);
+        console.log("su promedio es " + promedio);
+        return this.promedio;
     };
     Alumno.prototype.setNota = function (nota) {
         this.notas.push(nota);
+        this.notas.pop(); //elimino la ultima posicion del arreglo Notas para que no me cuente mal la 
+        //cantidad de elementos al momento de calcular el promedio
     };
     Alumno.prototype.getNota = function (position) {
         return this.notas[position];

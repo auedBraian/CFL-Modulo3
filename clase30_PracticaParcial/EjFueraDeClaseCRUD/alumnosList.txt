@@ -1,0 +1,1 @@
+pedro,gomez,11123456;juan,perez,34567890;braian,aued,34297043;cristian,gonzales,32145678;pruebaAlumno,pruebaApellido,12345612;
