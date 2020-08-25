@@ -1,0 +1,11 @@
+{
+  "name": "autospolimorfismo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "index": "tsc index.ts & node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
