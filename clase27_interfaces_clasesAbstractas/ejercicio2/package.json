@@ -1,0 +1,11 @@
+{
+  "name": "vehiculoclaseabs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "abstracta": "tsc index.ts & node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

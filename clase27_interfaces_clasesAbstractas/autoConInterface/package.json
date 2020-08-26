@@ -1,0 +1,11 @@
+{
+  "name": "clase27_interfaces_clasesabstractas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "auto": "tsc index.ts & node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
