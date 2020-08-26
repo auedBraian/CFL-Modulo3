@@ -94,7 +94,7 @@ while (opcion != 0) {
     else if (opcion == 6) {
         var posicion = readlineSync.questionInt("inserte en que posicion se encuentra el alumno del cual desea insertarle una nota ");
         var notaNueva = readlineSync.questionInt("Inserte la nota ");
-        registroAlumnos.getAlumnos()[posicion].setNota[notaNueva];
+        registroAlumnos.getAlumnos()[posicion].setNota[Number(notaNueva)];
     }
     else if (opcion == 7) {
         imprimirRegistro(registroAlumnos); //imprimo el registro

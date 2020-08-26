@@ -4,13 +4,13 @@ import { AccionesAlumno } from './accionesAlumno'
 export class Alumno extends Persona implements AccionesAlumno {
 
     protected promedio: number;
-    protected notas: number[]=[];
+    protected notas: number[] =[];
     protected DNI:number;
 
     public constructor(nombre: string, apellido: string,dni:number) {
         super(nombre, apellido);
         this.DNI=dni;
-        this.notas = [1,1,1];
+        this.notas = new Array();
     }
 
 
@@ -24,7 +24,7 @@ export class Alumno extends Persona implements AccionesAlumno {
       
         }
         
-        promedio = (suma/this.notas.length);
+        promedio = (suma/(this.notas.length));
         console.log("su promedio es " + promedio);
         return this.promedio;
     
@@ -32,9 +32,10 @@ export class Alumno extends Persona implements AccionesAlumno {
 
     public setNota(nota:number): void {
         this.notas.push(nota);
-        this.notas.pop(); //elimino la ultima posicion del arreglo Notas para que no me cuente mal la 
-                            //cantidad de elementos al momento de calcular el promedio
+          
+    console.log(this.notas);
     }
+
 
     public getNota(position: number): number {
         return this.notas[position];
